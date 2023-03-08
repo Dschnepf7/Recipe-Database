@@ -1,5 +1,5 @@
-const Recipe = require('./Recipe');
-const Ingredient = require('./Ingredient');
+const Recipe = require('./recipe');
+const Ingredient = require('./ingredient');
 
 
 Ingredient.belongsToMany(Recipe, {
