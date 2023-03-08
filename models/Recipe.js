@@ -8,23 +8,23 @@ Recipe.init(
     id: {
       type: DataTypes.STRING,
       allowNull: false,
-      primaryKey: true,
+      primaryKey: true
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     instructions: {
-        type: DataTypes.STRING, 
-        allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: false
     }
-
+  },
   {
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'recipe',
+    modelName: 'recipe'
   }
-});
+);
 
 module.exports = Recipe;
