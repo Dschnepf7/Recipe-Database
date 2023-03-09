@@ -1,5 +1,5 @@
 const router = require('express').Router();
-
+const withAuth = require('../utils/auth');
 router.get('/', (req, res) => {
     res.render('login');
 });
@@ -23,5 +23,6 @@ router.get('/profile', withAuth, async (req, res) => {
     }
   });
   
+
 
 module.exports = router;
