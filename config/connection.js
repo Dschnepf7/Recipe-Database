@@ -12,4 +12,10 @@ const sequelize = new Sequelize(
   }
 );
 
+<<<<<<< HEAD
+
 module.exports = sequelize;
+module.exports = sequelize;
+=======
+module.exports = sequelize;
+>>>>>>> main
