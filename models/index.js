@@ -9,6 +9,7 @@ Ingredient.belongsToMany(Recipe, {
 
 Ingredient.belongsToMany(User, {
     foreignKey: 'ingredient_id',
+    onDelete: 'CASCADE'
 })
 
 Recipe.hasMany(Ingredient, {
