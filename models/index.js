@@ -13,10 +13,12 @@ Ingredient.belongsToMany(User, {
 
 Recipe.hasMany(Ingredient, {
     foreignKey: 'recipe_id',
+    onDelete: 'CASCADE'
 });    
 
 User.hasMany(Recipe, {
     foreignKey: 'user_id',
+    onDelete: 'CASCADE'
 
 });
 
