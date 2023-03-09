@@ -1,6 +1,6 @@
-const Recipe = require('./recipe');
-const Ingredient = require('./ingredient');
-const User = require('./user');
+const Recipe = require('./Recipe');
+const Ingredient = require('./Ingredient');
+const User = require('./User');
 
 
 Ingredient.belongsToMany(Recipe, {
