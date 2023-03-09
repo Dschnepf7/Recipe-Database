@@ -4,10 +4,12 @@ const User = require('./user');
 
 
 Ingredient.belongsToMany(Recipe, {
+    through: 'recipe_ingredients',
     foreignKey: 'ingredient_id',
 });
 
 Ingredient.belongsToMany(User, {
+    through: 'user_ingredients',
     foreignKey: 'ingredient_id',
     onDelete: 'CASCADE'
 })
