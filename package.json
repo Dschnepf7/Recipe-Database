@@ -27,6 +27,8 @@
     "express-session": "^1.17.1",
     "handlebars": "^4.7.6",
     "mysql2": "^2.2.5",
+    "nodemon": "^2.0.21",
+    "normalize.css": "^8.0.1",
     "sequelize": "^6.3.5"
   }
 }
