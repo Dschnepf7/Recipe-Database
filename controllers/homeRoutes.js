@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const withAuth = require('../utils/auth');
+const {User} = require('../models/index')
+
 // router.get('/', (req, res) => {
 //     res.render('login');
 // });
@@ -10,25 +12,42 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/profile', withAuth, async (req, res) => {
-    try {
-      // Find the logged in user based on the session ID
-      const userData = await User.findByPk(req.session.user_id, {
-        attributes: { exclude: ['password'] },
-        include: [{ model: Project }],
-      });
+// router.get('/profile', withAuth, async (req, res) => {
+//     try {
+//       // Find the logged in user based on the session ID
+//       const userData = await User.findByPk(req.session.user_id, {
+//         // attributes: { exclude: ['password'] },
+//         // include: [{ model: Project }],
+//       });
+//   console.log(userData);
+//       const user = userData.get({ plain: true });
   
-      const user = userData.get({ plain: true });
+//       res.render('profile', {
+//         // ...user,
+//         // logged_in: req.session.logged_in
+//       });
+//     } catch (err) {
+//       res.status(500).json(err);
+//     }
+//   });
   
-      res.render('profile', {
-        ...user,
-        logged_in: true
-      });
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-  
+// router.get('/profile',(req,res)=>{
+// res.render('profile')
+// })
 
+router.get('/profile',async (req,res)=>{
+try{
+  const userData = await User.findByPk(req.session.user_id);
+  const oneUser = userData.get({plain:true});
+  // console.log(oneUser);
+    res.render('profile', {
+  //     user,
+  // logged_in: req.session.logged_in
+    
+  });
+} catch(err){
+  res.status(500).json(err);
+}
+});
 
 module.exports = router;
