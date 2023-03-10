@@ -2,7 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const routes = require('./controllers');
 const exphbs = require('express-handlebars');
-
+const fs = require('fs');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
@@ -26,7 +26,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-const hbs = exphbs.create({});
+const hbs = exphbs.create({
+  defaultLayout: '',
+  helpers: {
+  extend: function(name, context) {
+    let template = hbs.handlebars.partials[name];
+      hbs.handlebars.registerPartial(name, template);
+      return template(context);
+  }
+}});
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
