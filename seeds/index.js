@@ -1,15 +1,18 @@
 const sequelize = require('../config/connection');
-const seedGallery = require('./galleryData');
-const seedPaintings = require('./paintingData');
+const { Recipe } = require('../models');
 
-const seedAll = async () => {
+const recipeData = require('./recipeData.json');
+
+const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
-  await seedGallery();
+  const recipes = await Recipe.bulkCreate(recipeData, {
+    fields: ['id', 'Title', 'Ingredients', 'Instructions', 'Image_Name', 'Cleaned_Ingredients']
+  });
 
-  await seedPaintings();
+  console.log(`${recipes.length} recipes created successfully.`);
 
   process.exit(0);
 };
 
-seedAll();
+seedDatabase();
