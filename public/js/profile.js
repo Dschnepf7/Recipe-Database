@@ -6,7 +6,7 @@ const newFormHandler = async (event) => {
   const description = document.querySelector('#project-desc').value.trim();
 
   if (name && needed_funding && description) {
-    const response = await fetch(`/api/projects`, {
+    const response = await fetch(`/api/proje`, {
       method: 'POST',
       body: JSON.stringify({ name, needed_funding, description }),
       headers: {
@@ -45,3 +45,7 @@ document
 document
   .querySelector('.project-list')
   .addEventListener('click', delButtonHandler);
+
+  // add user info like username and email
+  // delete recipes btns
+  //link saved button to the profile page with the section "Saved Recipes"
