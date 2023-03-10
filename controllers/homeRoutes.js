@@ -6,7 +6,7 @@ const withAuth = require('../utils/auth');
 //     res.render('login');
 // });
 router.get('/', (req, res) => {
-  res.render('layouts/main', { title: 'main page' }); // Render the main.handlebars file with a title variable
+  res.render('landingPage', { title: 'main page',logged_in:req.session.logged_in }); // Render the main.handlebars file with a title variable
 });
 router.get('/login', (req, res) => {
   res.render('login');
