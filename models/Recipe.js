@@ -8,17 +8,22 @@ Recipe.init(
     id: {
       type: DataTypes.STRING,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true,
     },
-    name: {
+    Title: {
       type: DataTypes.STRING,
-      allowNull: false
+      
     },
-    instructions: {
+    Ingredients: {
       type: DataTypes.STRING,
-      allowNull: false
-    }
+      
   },
+  Instructions: {
+    type: DataTypes.STRING,
+  },
+  },
+
   {
     sequelize,
     freezeTableName: true,
