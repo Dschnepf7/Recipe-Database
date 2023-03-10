@@ -36,10 +36,12 @@ try{
   const userData = await User.findByPk(req.session.user_id);
   const oneUser = userData.get({plain:true});
   // console.log(oneUser);
+
     res.render('profile',{
       user:oneUser,
       logged_in: req.session.logged_in
     });
+
 } catch(err){
   res.status(500).json(err);
 }
