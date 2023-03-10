@@ -1,7 +1,13 @@
 const router = require('express').Router();
 const withAuth = require('../utils/auth');
+// router.get('/', (req, res) => {
+//     res.render('login');
+// });
 router.get('/', (req, res) => {
-    res.render('login');
+  res.render('layouts/main', { title: 'main page' }); // Render the main.handlebars file with a title variable
+});
+router.get('/login', (req, res) => {
+  res.render('login');
 });
 
 router.get('/profile', withAuth, async (req, res) => {
