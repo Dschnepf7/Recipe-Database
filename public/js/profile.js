@@ -23,6 +23,23 @@ const newFormHandler = async (event) => {
   }
 };
 
+router.get('/recipes/:title', async (req, res) => {
+  try {
+    const [rows, fields] = await pool.query(
+      'SELECT * FROM recipes WHERE title = ?',
+      [req.params.title]
+    );
+    if (rows.length === 0) {
+      return res.status(404).send('Recipe not found');
+    }
+    const recipe = rows[0];
+    res.render('recipe', { recipe });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+
 const delButtonHandler = async (event) => {
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
