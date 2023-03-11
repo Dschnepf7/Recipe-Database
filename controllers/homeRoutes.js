@@ -5,6 +5,7 @@ const withAuth = require('../utils/auth');
 // router.get('/', (req, res) => {
 //     res.render('login');
 // });
+
 router.get('/', (req, res) => {
   res.render('landingPage', { title: 'main page',logged_in:req.session.logged_in }); // Render the main.handlebars file with a title variable
 });
@@ -52,7 +53,7 @@ try{
 // GET one recipe
 router.get('/recipe/:Title', async (req, res) => {
   try {
-    const dbRecipeData = await Recipe.findOne(req.params.id, {
+    const dbRecipeData = await Recipe.findOne(req.params.Title, {
       include: [
         {
           model: Recipe,
@@ -112,5 +113,6 @@ try{
   res.status(500).json(err);
 }
 });
+
 
 module.exports = router;
