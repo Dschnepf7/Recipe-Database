@@ -1,6 +1,9 @@
 const router = require('express').Router();
 const { Recipe } = require('../../models');
 const withAuth = require('../../utils/auth');
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
 
 router.post('/', withAuth, async (req, res) => {
   try {
@@ -13,6 +16,10 @@ router.post('/', withAuth, async (req, res) => {
   } catch (err) {
     res.status(400).json(err);
   }
+});
+router.get('/profile',function (req, res) {
+const recipeData = JSON.parse(fs.readFileSync('seeds/recipeData.json', 'utf8'));
+res.render('profile', {recipes: recipeData});
 });
 
 // would require id in the params?
