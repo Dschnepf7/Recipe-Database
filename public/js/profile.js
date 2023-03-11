@@ -1,6 +1,7 @@
-const express = require('express');
-const app = express();
+const router = require('express').Router();
+// const app = express();
 const recipeData = require('../seeds/recipeData');
+
 const newFormHandler = async (event) => {
   event.preventDefault();
   const Title = document.querySelector('#recipe-name').value.trim();
@@ -9,22 +10,35 @@ const newFormHandler = async (event) => {
   const Image_Name = document.querySelector('#recipe-image').value.trim();
   const Cleaned_Ingredients = document.querySelector('#recipe-cleaned-ingredients').value.trim();
 
-  router.get('/recipes/:title', async (req, res) => {
+  // router.get('/recipes/:title', async (req, res) => {
+  //   try {
+  //     const [rows, fields] = await pool.query(
+  //       'SELECT * FROM recipes WHERE title = ?',
+  //       [req.params.title]
+  //     );
+  //     if (rows.length === 0) {
+  //       return res.status(404).send('Recipe not found');
+  //     }
+  //     const recipe = rows[0];
+  //     res.render('recipe', { Recipe });
+  //   } catch (err) {
+  //     console.error(err);
+  //     res.status(500).send('Server error');
+  //   }
+  // });
+  const getRecipeByTitle = async (title) => {
     try {
-      const [rows, fields] = await pool.query(
-        'SELECT * FROM recipes WHERE title = ?',
-        [req.params.Title]
-      );
-      if (rows.length === 0) {
-        return res.status(404).send('Recipe not found');
+      const response = await fetch(`/recipes/${title}`);
+      if (!response.ok) {
+        throw new Error(response.status);
       }
-      const recipe = rows[0];
-      res.render('recipe', { Recipe });
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Server error');
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
     }
-  });
+  };
+  
 
   if (Title && Ingredients && Instructions && Image_Name && Cleaned_Ingredients) {
     const response = await fetch(`/api/Recipe`, {
@@ -63,4 +77,4 @@ const delButtonHandler = async (event) => {
 
 document.querySelector('.recipe-list').addEventListener('click', delButtonHandler);
 
-  
+ 
