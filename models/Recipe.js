@@ -20,7 +20,6 @@ Recipe.init(
       type: DataTypes.TEXT,
 
 
-
     },
     Instructions: {
       type: DataTypes.TEXT,
