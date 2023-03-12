@@ -5,6 +5,12 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 
+
+
+
+
+
+
 router.post('/', withAuth, async (req, res) => {
   try {
     const newRecipe = await Recipe.create({
@@ -40,6 +46,42 @@ router.delete('/:id', withAuth, async (req, res) => {
 
     res.status(200).json(recipeData);
   } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/', withAuth, (req, res) => {
+  // Get all books from the book table
+  console.log('test');
+  Recipe.findAll().then((recipeData) => {
+    res.json(recipeData);
+  });
+});
+
+router.get('/:Title', async (req, res) => {
+  try {
+    console.log(req.params.Title);
+    const dbRecipeData = await Recipe.findOne({where: {Title: req.params.Title},
+      include: [
+        {
+          model: Recipe,
+          attributes: [
+            'id',
+            'Title',
+            'Ingredients',
+            'Instructions',
+          ],
+        },
+      ],
+    });
+// return dbRecipeData;
+console.log(dbRecipeData);
+
+
+    const recipe = dbRecipeData.get({ plain: true });
+    res.render('profile', { recipe, logged_in: req.session.logged_in });
+  } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
