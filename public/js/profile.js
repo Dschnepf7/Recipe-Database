@@ -1,6 +1,3 @@
-const router = require('express').Router();
-// const app = express();
-const recipeData = require('../seeds/recipeData');
 
 const newFormHandler = async (event) => {
   event.preventDefault();
@@ -88,14 +85,13 @@ searchForm.addEventListener('submit', async (event) => {
   console.log(response);
 
   if (response.ok) {
-    const recipe = await response.json();
+    const recipeData = await response.json();
     // handle data, such as updating HTML with the recipe details
     console.log(recipe);
   } else {
     alert('Failed to get recipe');
   }
 });
-
 
 
 
