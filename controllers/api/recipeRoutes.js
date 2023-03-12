@@ -79,15 +79,16 @@ router.get('/:Title', async (req, res) => {
       where: { Title: req.params.Title },
       attributes: { exclude: ['Image_Name', 'Cleaned_Ingredients'] },
     });
-    console.log(dbRecipeData);
 
     const recipe = dbRecipeData.get({ plain: true });
-    res.render('profile', { recipe, logged_in: req.session.logged_in });
+    res.json({ recipe });
+    console.log(recipe);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
 });
+
 
 
 module.exports = router;
