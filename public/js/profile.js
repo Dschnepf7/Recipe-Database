@@ -67,7 +67,10 @@ searchForm.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   const searchValue = document.querySelector('#search-input').value.trim();
-  const response = await fetch(`/api/recipe?title=${searchValue}`);
+  console.log(searchValue);
+  const response = await fetch('seeds/recipeData.json')
+   .then((response) => response.json())
+   .then((data) => data.filter((recipe) => recipe.title.includes(searchValue)));
   console.log(response);
 
   if (response.ok) {

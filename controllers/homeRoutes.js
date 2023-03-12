@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const {User} = require('../models/index');
 const withAuth = require('../utils/auth');
-
+const {Recipe} = require('../models/index');
+const data = require('../seeds/recipeData.json')
 // router.get('/', (req, res) => {
 //     res.render('login');
 // });
@@ -50,7 +51,7 @@ try{
 // ********************************************************************************************
 
 // GET one recipe
-router.get('/recipe/:Title', async (req, res) => {
+router.get('/seeds/recipeData.json/ecipe/:Title', async (req, res) => {
   try {
     const dbRecipeData = await Recipe.findOne(req.params.id, {
       include: [
