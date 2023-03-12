@@ -50,9 +50,9 @@ try{
 // ********************************************************************************************
 
 // GET one recipe
-router.get('/recipe/:id', async (req, res) => {
+router.get('/recipe/:Title', async (req, res) => {
   try {
-    const dbRecipeData = await Recipe.findByPk(req.params.id, {
+    const dbRecipeData = await Recipe.findOne(req.params.id, {
       include: [
         {
           model: Recipe,
