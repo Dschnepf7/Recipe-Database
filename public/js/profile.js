@@ -79,20 +79,17 @@ searchForm.addEventListener('submit', async (event) => {
 
   const searchValue = document.querySelector('#search-input').value.trim();
   console.log(searchValue);
-  const response =  await fetch(`/api/recipe/${searchValue}`)
-   .then((response) => response.json())
-   .then((data) => data.filter((recipe) => recipe.Title.includes(searchValue)));
-  console.log("test1");
-  console.log(response);
+  const response = await fetch(`/api/recipe/${searchValue}`);
 
   if (response.ok) {
     const recipeData = await response.json();
+    console.log(recipeData);
     // handle data, such as updating HTML with the recipe details
-    console.log(recipe);
   } else {
     alert('Failed to get recipe');
   }
 });
+
 
 
 
