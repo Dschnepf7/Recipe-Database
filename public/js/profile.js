@@ -1,23 +1,4 @@
 
-
-
-// router.delete('/recipe/:id', async (req, res) => {
-//   try {
-//     const deletedRecipe = await Recipe.destroy({
-//       where: {
-//         id: req.params.id,
-//       },
-//     });
-//     res.status(200).json(deletedRecipe);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-// app.use(router);
-
 const newFormHandler = async (event) => {
   event.preventDefault();
   const Title = document.querySelector('#recipe-name').value.trim();
@@ -25,6 +6,36 @@ const newFormHandler = async (event) => {
   const Instructions = document.querySelector('#recipe-instructions').value.trim();
   const Image_Name = document.querySelector('#recipe-image').value.trim();
   const Cleaned_Ingredients = document.querySelector('#recipe-cleaned-ingredients').value.trim();
+
+  // router.get('/recipes/:title', async (req, res) => {
+  //   try {
+  //     const [rows, fields] = await pool.query(
+  //       'SELECT * FROM recipes WHERE title = ?',
+  //       [req.params.title]
+  //     );
+  //     if (rows.length === 0) {
+  //       return res.status(404).send('Recipe not found');
+  //     }
+  //     const recipe = rows[0];
+  //     res.render('recipe', { Recipe });
+  //   } catch (err) {
+  //     console.error(err);
+  //     res.status(500).send('Server error');
+  //   }
+  // });
+  const getRecipeByTitle = async (title) => {
+    try {
+      const response = await fetch(`/recipes/${title}`);
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
 
   if (Title && Ingredients && Instructions && Image_Name && Cleaned_Ingredients) {
     const response = await fetch('/api/recipe', {
@@ -75,7 +86,7 @@ searchForm.addEventListener('submit', async (event) => {
   console.log(response);
 
   if (response.ok) {
-    const recipe = await response.json();
+    const recipeData = await response.json();
     // handle data, such as updating HTML with the recipe details
     console.log(recipe);
   } else {
@@ -85,5 +96,5 @@ searchForm.addEventListener('submit', async (event) => {
 
 
 
-
 // document.querySelector('.recipe-list').addEventListener('click', delButtonHandler);
+

@@ -2,7 +2,7 @@ const router = require('express').Router();
 const {User} = require('../models/index');
 const withAuth = require('../utils/auth');
 const {Recipe} = require('../models/index');
-const data = require('../seeds/recipeData.json')
+const recipeData = require('../seeds/recipeData.json')
 // router.get('/', (req, res) => {
 //     res.render('login');
 // });
@@ -48,10 +48,31 @@ try{
 }
 });
 
-// ********************************************************************************************
 
 // GET one recipe
+router.get('/seeds/recipeData.json/ecipe/:Title', async (req, res) => {
+  try {
+    const dbRecipeData = await Recipe.findOne(req.params.id, {
+      include: [
+        {
+          model: Recipe,
+          attributes: [
+            'id',
+            'Title',
+            'Ingredients',
+            'Instructions',
+          ],
+        },
+      ],
+    });
 
+    const recipe = dbRecipeData.get({ plain: true });
+    res.render('recipe', { recipe, logged_in: req.session.logged_in });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 // GET all recipes for profile page
 router.get('/', async (req, res) => {
@@ -79,7 +100,6 @@ router.get('/', async (req, res) => {
 });
 
 
-// *********************************************************************
 
 router.get('/profile',async (req,res)=>{
 try{
