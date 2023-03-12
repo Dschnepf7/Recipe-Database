@@ -13,6 +13,7 @@ Recipe.init(
     },
     Title: {
       type: DataTypes.STRING,
+      
 
     },
     Ingredients: {
