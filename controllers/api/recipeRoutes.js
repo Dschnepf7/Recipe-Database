@@ -17,7 +17,7 @@ router.post('/:Title', withAuth, async (req, res) => {
     res.status(400).json(err);
   }
 });
-
+router.delete('/:id', withAuth, async (req, res) => {
   try {
     const recipeData = await Recipe.destroy({
       where: {
