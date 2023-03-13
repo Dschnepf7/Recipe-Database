@@ -17,11 +17,7 @@ router.post('/', withAuth, async (req, res) => {
     res.status(400).json(err);
   }
 });
-// router.get('/profile',function (req, res) {
-// const recipeData = JSON.parse(fs.readFileSync('seeds/recipeData.json', 'utf8'));
-// console.log(recipeData)
-// res.render('profile', {recipeData});
-// });
+
 
 
 

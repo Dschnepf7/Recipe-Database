@@ -1,5 +1,5 @@
-
 <html>
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,23 +9,29 @@
   <link rel="stylesheet" href="/public/css/style.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
- 
 
 
- 
+
+
 </head>
+
 <body>
 
-    <body>
-  <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
-      <nav>
+  <body>
+    <div class="flex-column justify-space-around">
+      <header class="display-flex justify-space-between align-center p-2">
+        <nav>
           <div class="nav-wrapper">
+
           <a href="#" class="brand-logo">Fridge Raider 💸</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="/">Home</a></li>
         {{!-- link the path for the buttons!! --}}
+<<<<<<< HEAD
         <li><a href="badges.html">Saved</a></li>
+=======
+        <li><a href="/saved">Saved</a></li>
+>>>>>>> main
         <li><a href="/search">Search</a></li>
         <li><a href="/login">Login</a></li>
         </ul>
@@ -53,24 +59,62 @@
               </div>
               <div class="col l4 offset-l2 s12">
               </div>
+
+            <a href="#" class="brand-logo">Fridge Raider 💸</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a href="/">Home</a></li>
+              {{!-- link the path for the buttons!! --}}
+              <li><a href="badges.html">Saved</a></li>
+
+              <li><a href="/search">Search</a></li>
+
+
+              <li><a href="/login">Login</a></li>
+            </ul>
+          </div>
+          <!-- Conditionally render login or logout links -->
+          {{#if logged_in}}
+          <a href="/search">search</a> |
+          <button id="logout">logout</button>
+          {{else}}
+          <a href="/login">login</a>
+          {{/if}}
+        </nav>
+
+      </header>
+      <main class="container container-fluid mt-5">
+        <!-- Render the sub layout -->
+        {{{ body }}}
+      </main>
+      <footer class="page-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Created By:</h5>
+              <p class="grey-text text-lighten-4">Ahmad Bustami, Irina Golovanich, Cynthia Guzman, and Dominic Schnepf.
+              </p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+
             </div>
           </div>
-          <div class="footer-copyright">
-            <div class="container">
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
             © 2023 Copyright Text
-            </div>
           </div>
-        </footer>
-  </div>
-
-  <!-- Render script for logged in users only -->
-  {{#if logged_in}}
-
-  <script src="/js/logout.js"></script>
-  {{!-- <script src="/public//js/profile.js"></script> --}}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        </div>
+      </footer>
 
 
-  {{/if}}
-</body>
+      <!-- Render script for logged in users only -->
+      {{#if logged_in}}
+
+      <script src="/js/logout.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+      {{/if}}
+  </body>
+
 </html>
