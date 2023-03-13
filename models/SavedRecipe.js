@@ -11,27 +11,20 @@ SavedRecipe.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    Title: {
-      type: DataTypes.STRING,
-      
-
+    recipe_id: {
+      type: DataTypes.INTEGER, 
+      references: {
+        model:"recipe",
+        key:"id"
+      }
     },
-    Ingredients: {
-      type: DataTypes.TEXT,
-
-
-    },
-    Instructions: {
-      type: DataTypes.TEXT,
-    },
-
-    Image_Name: {
-      type: DataTypes.STRING
-    },
-
-    Cleaned_Ingredients: {
-      type: DataTypes.TEXT
-    }
+    user_id: {
+        type: DataTypes.INTEGER, 
+        references: {
+          model:"user",
+          key:"id"
+        }
+      }
   },
 
   {

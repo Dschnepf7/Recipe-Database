@@ -9,14 +9,13 @@ SavedRecipe.belongsTo(User, {
 })
 
 Recipe.belongsToMany(User, {
-    through: 'user_recipes',
-    foreignKey: 'recipe_id',
-    onDelete: 'CASCADE'
-})
+    through: SavedRecipe,
+    
+});
 
-User.hasMany(Recipe, {
-    foreignKey: 'user_id',
-    onDelete: 'CASCADE'
+User.belongsToMany(Recipe, {
+    through: SavedRecipe,
+    
 
 });
 
