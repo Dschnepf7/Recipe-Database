@@ -22,6 +22,40 @@
       <header class="display-flex justify-space-between align-center p-2">
         <nav>
           <div class="nav-wrapper">
+
+          <a href="#" class="brand-logo">Fridge Raider 💸</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+        {{!-- link the path for the buttons!! --}}
+        <li><a href="/saved">Saved</a></li>
+        <li><a href="/search">Search</a></li>
+        <li><a href="/login">Login</a></li>
+        </ul>
+    </div>
+        <!-- Conditionally render login or logout links -->
+        {{#if logged_in}}
+        <a href="/search">search</a> |
+        <button id="logout">logout</button>
+        {{else}}
+        <a href="/login">login</a>
+        {{/if}}
+      </nav>
+
+    </header>
+    <main class="container container-fluid mt-5">
+      <!-- Render the sub layout -->
+      {{{ body }}}
+    </main>
+    <footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Created By:</h5>
+                <p class="grey-text text-lighten-4">Ahmad Bustami, Irina Golovanich, Cynthia Guzman, and Dominic Schnepf.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+              </div>
+
             <a href="#" class="brand-logo">Fridge Raider 💸</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li><a href="/">Home</a></li>
@@ -57,6 +91,7 @@
               </p>
             </div>
             <div class="col l4 offset-l2 s12">
+
             </div>
           </div>
         </div>
