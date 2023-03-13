@@ -15,18 +15,29 @@
     {{!-- <button type="submit">Search</button> --}}
   </form>
   
-  <ul>
+  {{!-- <ul>
     {{#each recipes}}
       <li>
-        <h2>{{this.Title}}</h2>
-        <img src="{{this.Image_Name}}" alt="Recipe Image">
-        <p>{{this.Description}}</p>
-        <a href="/recipeData/{{this.Title}}">View Recipe</a>
+        <h2>{{Title}}</h2>
+        <img src="{{Image_Name}}" alt="Recipe Image">
+        <p>{{Description}}</p>
+        <a href="/recipeData/{{Title}}">View Recipe</a>
       </li>
     {{/each}}
+  </ul> --}}
+ <ul>
+    
+      <li>
+        <h2 id="recipe-title"></h2>
+        <img id="food-image">
+        <p></p>
+        <a id = "recipe-link" href="#">View Recipe</a>
+      </li>
+    
   </ul>
   <button class="waves-effect waves-light btn"><i class="material-icons right">save</i>Save Recipe</button>
   
   
   <script src="/js/profile.js"></script>
 </body>
+
