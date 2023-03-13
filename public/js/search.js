@@ -81,6 +81,7 @@ searchForm.addEventListener('submit', async (event) => {
 
 
 
+<<<<<<< HEAD
 
 
 // document.querySelector('.recipe-list').addEventListener('click', delButtonHandler);
@@ -104,6 +105,7 @@ router.get('/savedRecipes', async (req, res) => {
   }
 });
 const searchInput = document.querySelector('#search-input');
+const autocompleteDropdown = document.querySelector('#autocomplete-dropdown');
 
 searchInput.addEventListener('input', async () => {
   const searchValue = searchInput.value.trim();
@@ -113,13 +115,38 @@ searchInput.addEventListener('input', async () => {
 
     if (response.ok) {
       const suggestions = await response.json();
-      // Display the suggestions
+
+      // Display the suggestions in the autocomplete menu
+      autocompleteDropdown.innerHTML = '';
+      suggestions.forEach((suggestion) => {
+        const suggestionLink = document.createElement('a');
+        suggestionLink.href = '#';
+        suggestionLink.textContent = suggestion;
+        autocompleteDropdown.appendChild(suggestionLink);
+      });
+      autocompleteDropdown.style.display = 'block';
+
+      // Add event listener for the suggestion links
+      autocompleteDropdown.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (event.target.tagName === 'A') {
+          searchInput.value = event.target.textContent;
+          autocompleteDropdown.innerHTML = '';
+          autocompleteDropdown.style.display = 'none';
+        }
+      });
     } else {
       console.error(`Failed to get autocomplete suggestions for "${searchValue}"`);
     }
+  } else {
+    autocompleteDropdown.innerHTML = '';
+    autocompleteDropdown.style.display = 'none';
   }
 });
 
 
+
+=======
+>>>>>>> main
 module.exports = router;
 
