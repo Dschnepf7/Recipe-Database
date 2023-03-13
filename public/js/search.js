@@ -81,45 +81,5 @@ searchForm.addEventListener('submit', async (event) => {
 
 
 
-
-
-// document.querySelector('.recipe-list').addEventListener('click', delButtonHandler);
-
-
-
-
-router.get('/savedRecipes', async (req, res) => {
-  try {
-    // Find the current user
-    const user = await User.findOne({ where: { id: req.session.user_id } });
-
-    // Get all the user's saved recipes
-    const savedRecipes = await user.getRecipes();
-
-    // Render the savedRecipes view with the user's saved recipes
-    res.render('savedRecipes', { savedRecipes });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-const searchInput = document.querySelector('#search-input');
-
-searchInput.addEventListener('input', async () => {
-  const searchValue = searchInput.value.trim();
-
-  if (searchValue) {
-    const response = await fetch(`/api/autocomplete/${searchValue}`);
-
-    if (response.ok) {
-      const suggestions = await response.json();
-      // Display the suggestions
-    } else {
-      console.error(`Failed to get autocomplete suggestions for "${searchValue}"`);
-    }
-  }
-});
-
-
 module.exports = router;
 
