@@ -18,10 +18,10 @@
   <ul>
     {{#each recipes}}
       <li>
-        <h2>{{this.Title}}</h2>
-        <img src="{{this.Image_Name}}" alt="Recipe Image">
-        <p>{{this.Description}}</p>
-        <a href="/recipeData/{{this.Title}}">View Recipe</a>
+        <h1>{{this.Title}}</h1>
+        <h2>"{{this.Ingredient}}</h2>
+        <p>{{this.Instructions}}</p>
+        <a href="../public/images/Food Images/{{this.Image_Name}}">View Recipe</a>
       </li>
     {{/each}}
   </ul>
