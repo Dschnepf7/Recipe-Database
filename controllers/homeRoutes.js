@@ -3,7 +3,7 @@ const {User} = require('../models/index');
 const withAuth = require('../utils/auth');
 const {Recipe} = require('../models/index');
 const recipeData = require('../seeds/recipeData.json')
-const $ = require('jquery')
+
 // router.get('/', (req, res) => {
 //     res.render('login');
 // });
