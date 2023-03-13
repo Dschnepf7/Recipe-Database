@@ -66,7 +66,7 @@ router.get('/:Title', async (req, res) => {
 
     const recipe = dbRecipeData.get({ plain: true });
     res.json({ recipe });
-    console.log(recipe);
+    console.log(recipe)
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
