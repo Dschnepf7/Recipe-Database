@@ -27,7 +27,7 @@ router.post('/', withAuth, async (req, res) => {
 
 // would require id in the params?
 
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete('/:Title', withAuth, async (req, res) => {
   try {
     const recipeData = await Recipe.destroy({
       where: {
