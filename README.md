@@ -3,7 +3,7 @@
 <br>
 
 ### **Description**
-FridgeRaider was created to help save time and ease the decision-making process when it comes to mealrep. The app allows users to search for recipes using ingredients they might have in their fridge or based on recipe names. It allows users to create a profile where they can save & edit their ingredient lists as well as save & delete recipes. 
+FridgeRaider was created to help save time and ease the decision-making process when it comes to mealrep. The app allows users to search for recipes by inputting an ingredient into the dropdown search menu and receiving a list of recipes back. It allows users to create a profile where they can save & edit their ingredient lists as well as save & delete recipes. The app is simple and easy to use
 <br>
 
 ### **Table of Contents**
