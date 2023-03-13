@@ -81,6 +81,7 @@ searchForm.addEventListener('submit', async (event) => {
 
 
 
+<<<<<<< HEAD
 
 
 // document.querySelector('.recipe-list').addEventListener('click', delButtonHandler);
@@ -145,5 +146,7 @@ searchInput.addEventListener('input', async () => {
 
 
 
+=======
+>>>>>>> main
 module.exports = router;
 

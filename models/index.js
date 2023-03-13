@@ -1,23 +1,12 @@
 const Recipe = require('./Recipe');
-const Ingredient = require('./Ingredient');
 const User = require('./User');
+const SavedRecipe = require('./SavedRecipe');
 
 
-Ingredient.belongsToMany(Recipe, {
-    through: 'recipe_ingredients',
-    foreignKey: 'ingredient_id',
-});
-
-Ingredient.belongsToMany(User, {
-    through: 'user_ingredients',
-    foreignKey: 'ingredient_id',
+SavedRecipe.belongsTo(User, {
+    foreignKey: 'SavedRecipe_id',
     onDelete: 'CASCADE'
 })
-
-Recipe.hasMany(Ingredient, {
-    foreignKey: 'recipe_id',
-    onDelete: 'CASCADE'
-});    
 
 Recipe.belongsToMany(User, {
     through: 'user_recipes',
@@ -31,9 +20,9 @@ User.hasMany(Recipe, {
 
 });
 
-User.hasMany(Ingredient, {
+User.hasMany(SavedRecipe, {
     foreignKey: 'user_id',
 });
 
 
-module.exports = { Ingredient, Recipe, User };
+module.exports = { SavedRecipe, Recipe, User };
