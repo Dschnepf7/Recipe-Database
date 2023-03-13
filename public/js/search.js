@@ -33,7 +33,7 @@ const newFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/profile');
+      document.location.replace('/search');
     } else {
       alert('Failed to create recipe');
     }
@@ -78,6 +78,7 @@ searchForm.addEventListener('submit', async (event) => {
     alert('Failed to get recipe');
   }
 });
+
 
 
 module.exports = router;

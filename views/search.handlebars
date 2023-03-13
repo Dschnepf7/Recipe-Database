@@ -1,18 +1,21 @@
 <head>
   <meta charset="utf-8">
-  {{!-- <title>Welcome to your profile!</title> --}}
 </head>
 <body>
   <h1>Search Recipes:</h1>
   
   <form id="search-form">
-    <label for="search-input">Search:</label>
+     <div class="input-field">
     <input type="text" id="search-input" name="search" placeholder="Enter keywords">
+    <ul class="autocomplete-dropdown"></ul>
+    <label for="search-input">Search:</label>
+  </div>
+    {{!-- <label for="search-input">Search:</label>
+    <input type="text" id="search-input" name="search" placeholder="Enter keywords"> --}}
    
      <button id="search-button" class="waves-effect waves-light btn"><i class="material-icons right">search</i>Search</button>
     {{!-- <button type="submit">Search</button> --}}
   </form>
- 
  <ul>
     
       <li>

@@ -72,7 +72,7 @@ router.get('/seeds/recipeData.json/ecipe/:Title', async (req, res) => {
   }
 });
 
-// GET all recipes for profile page
+// GET all recipes for search page
 router.get('/', async (req, res) => {
   try {
     const dbRecipeData = await Recipe.findAll({
@@ -104,7 +104,7 @@ try{
   const userData = await User.findByPk(req.session.user_id);
   const oneUser = userData.get({plain:true});
   // console.log(oneUser);
-    res.render('profile');
+    res.render('search');
 } catch(err){
   res.status(500).json(err);
 }
