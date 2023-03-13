@@ -69,8 +69,9 @@ searchForm.addEventListener('submit', async (event) => {
 
   if (response.ok) {
     const recipeData = await response.json();
-    console.log(recipeData);
+    // console.log(recipeData);
     document.getElementById("recipe-title").textContent=recipeData.recipe.Title;
+    document.getElementById("recipe-title").setAttribute("data-id", recipeData.recipe.id);
     document.getElementById("food-image").src= "/images/Food-Images/"+recipeData.recipe.Image_Name+".jpg"
     document.getElementById("recipe-link").href="/recipe/"+recipeData.recipe.id
     // handle data, such as updating HTML with the recipe details
@@ -80,21 +81,16 @@ searchForm.addEventListener('submit', async (event) => {
 });
 
 
-router.get('/savedRecipes', async (req, res) => {
-  try {
-    // Find the current user
-    const user = await User.findOne({ where: { id: req.session.user_id } });
 
-    // Get all the user's saved recipes
-    const savedRecipes = await user.getRecipes();
 
-    // Render the savedRecipes view with the user's saved recipes
-    res.render('savedRecipes', { savedRecipes });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
+
+
+
+
+
+
+
+
 
 
 module.exports = router;
