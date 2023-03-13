@@ -1,0 +1,16 @@
+{{#if recipes}}
+  <h2>Your saved recipes:</h2>
+  <ul>
+    {{#each recipes}}
+      <li>
+        <a href="/recipe/{{ Title }}">
+          {{ Title }}
+        </a>
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>You have not saved any recipes yet.</p>
+{{/if}}
+
+<script src="/public/js/search.js"
