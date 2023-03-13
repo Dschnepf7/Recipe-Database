@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Ingredient } = require('../../models');
+const { Ingredient, Recipe } = require('../../models');
 
 const withAuth = require('../../utils/auth');
 
@@ -36,6 +36,16 @@ router.delete('/:id', withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+router.get('/recipe-search', async(req, res) => {
+const allRecipe = await Recipe.findAll();
+const recipes = allRecipe.map(r=>r.get({plain:true}));
+console.log(recipes);
+const matchedRecipes = recipes.map(r=>{
+  return ['potato','salt'].includes("potato") ? "we have recipe": "no recipe"
+})
+console.log(matchedRecipes);
 });
 
 module.exports = router;
