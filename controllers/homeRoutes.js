@@ -4,13 +4,7 @@ const withAuth = require('../utils/auth');
 const {Recipe} = require('../models/index');
 const recipeData = require('../seeds/recipeData.json')
 
-<<<<<<< HEAD
 
-=======
-// router.get('/', (req, res) => {
-//     res.render('login');
-// });
->>>>>>> main
 router.get('/', (req, res) => {
   res.render('landingPage', { title: 'main page',logged_in:req.session.logged_in }); // Render the main.handlebars file with a title variable
 });
@@ -79,7 +73,7 @@ router.get('/seeds/recipeData.json/ecipe/:Title', async (req, res) => {
   }
 });
 
-// GET all recipes for profile page
+// GET all recipes for search page
 router.get('/', async (req, res) => {
   try {
     const dbRecipeData = await Recipe.findAll({
@@ -111,7 +105,7 @@ try{
   const userData = await User.findByPk(req.session.user_id);
   const oneUser = userData.get({plain:true});
   // console.log(oneUser);
-    res.render('profile');
+    res.render('search');
 } catch(err){
   res.status(500).json(err);
 }
