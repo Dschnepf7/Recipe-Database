@@ -93,5 +93,6 @@ searchForm.addEventListener('submit', async (event) => {
 
 
 
+
 // document.querySelector('.recipe-list').addEventListener('click', delButtonHandler);
 
