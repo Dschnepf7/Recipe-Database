@@ -1,6 +1,6 @@
 <head>
   <meta charset="utf-8">
-  <title>Welcome to your profile!</title>
+  {{!-- <title>Welcome to your profile!</title> --}}
 </head>
 <body>
   <h1>Search Recipes:</h1>
@@ -8,25 +8,34 @@
   <form id="search-form">
     <label for="search-input">Search:</label>
     <input type="text" id="search-input" name="search" placeholder="Enter keywords">
-    <div class="progress">
-      <div class="indeterminate"></div>
-  </div>
+   
      <button id="search-button" class="waves-effect waves-light btn"><i class="material-icons right">search</i>Search</button>
     {{!-- <button type="submit">Search</button> --}}
   </form>
+<<<<<<< HEAD:views/search.handlebars
+ 
+=======
   
-  <ul>
+  {{!-- <ul>
     {{#each recipes}}
       <li>
-        <h2>{{this.Title}}</h2>
-        <img src="{{this.Image_Name}}" alt="Recipe Image">
-        <p>{{this.Description}}</p>
-        <a href="/recipeData/{{this.Title}}">View Recipe</a>
       </li>
     {{/each}}
+  </ul> --}}
+>>>>>>> refs/remotes/origin/cynthia-branch:views/profile.handlebars
+ <ul>
+    
+      <li>
+        <h2 id="recipe-title"></h2>
+        <img id="food-image">
+        <p></p>
+        <a id = "recipe-link" href="#">View Recipe</a>
+      </li>
+    
   </ul>
   <button class="waves-effect waves-light btn"><i class="material-icons right">save</i>Save Recipe</button>
   
   
-  <script src="/js/profile.js"></script>
+  <script src="/js/search.js"></script>
 </body>
+

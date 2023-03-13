@@ -5,12 +5,6 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 
-
-
-
-
-
-
 router.post('/', withAuth, async (req, res) => {
   try {
     const newRecipe = await Recipe.create({
@@ -23,10 +17,13 @@ router.post('/', withAuth, async (req, res) => {
     res.status(400).json(err);
   }
 });
-router.get('/profile',function (req, res) {
-const recipeData = JSON.parse(fs.readFileSync('seeds/recipeData.json', 'utf8'));
-res.render('profile', {recipes: recipeData});
-});
+// router.get('/profile',function (req, res) {
+// const recipeData = JSON.parse(fs.readFileSync('seeds/recipeData.json', 'utf8'));
+// console.log(recipeData)
+// res.render('profile', {recipeData});
+// });
+
+
 
 // would require id in the params?
 
@@ -58,31 +55,18 @@ router.get('/', withAuth, (req, res) => {
   });
 });
 
-// router.get('/:Title', async (req, res) => {
-//   try {
-//     console.log(req.params.Title);
-//     const dbRecipeData = await Recipe.findOne({where: {Title: req.params.Title},
-//       include: [
-//         {
-//           model: Ingredient,
-//           attributes: [
-//             'id',
-//             'name'
-//           ],
-//         },
-//       ],
-//     });
+
 
 router.get('/:Title', async (req, res) => {
   try {
     const dbRecipeData = await Recipe.findOne({
       where: { Title: req.params.Title },
-      attributes: { exclude: ['Image_Name', 'Cleaned_Ingredients'] },
+      attributes: { exclude: ['Cleaned_Ingredients'] },
     });
 
     const recipe = dbRecipeData.get({ plain: true });
     res.json({ recipe });
-    console.log(recipe);
+    console.log(recipe)
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -90,5 +74,5 @@ router.get('/:Title', async (req, res) => {
 });
 
 
-
+  
 module.exports = router;

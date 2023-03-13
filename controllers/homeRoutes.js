@@ -3,9 +3,14 @@ const {User} = require('../models/index');
 const withAuth = require('../utils/auth');
 const {Recipe} = require('../models/index');
 const recipeData = require('../seeds/recipeData.json')
+
+<<<<<<< HEAD
+
+=======
 // router.get('/', (req, res) => {
 //     res.render('login');
 // });
+>>>>>>> main
 router.get('/', (req, res) => {
   res.render('landingPage', { title: 'main page',logged_in:req.session.logged_in }); // Render the main.handlebars file with a title variable
 });
@@ -13,7 +18,7 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/profile', withAuth, async (req, res) => {
+router.get('/search', withAuth, async (req, res) => {
     try {
       // Find the logged in user based on the session ID
       const userData = await User.findByPk(req.session.user_id, {
@@ -23,22 +28,22 @@ router.get('/profile', withAuth, async (req, res) => {
   console.log(userData);
       const user = userData.get({ plain: true });
   
-      res.render('profile', {
+      res.render('search', {
         // ...user,
         // logged_in: req.session.logged_in
       });
     } catch (err) {
       res.status(500).json(err);
     }
-  });
+});
   
-router.get('/profile',withAuth,async (req,res)=>{
+router.get('/search',withAuth,async (req,res)=>{
 try{
   const userData = await User.findByPk(req.session.user_id);
   const oneUser = userData.get({plain:true});
   // console.log(oneUser);
 
-    res.render('profile',{
+    res.render('search',{
       user:oneUser,
       logged_in: req.session.logged_in
     });
@@ -89,7 +94,7 @@ router.get('/', async (req, res) => {
     const recipes = dbRecipeData.map((recipe) =>
       recipe.get({ plain: true })
     );
-    res.render('profile', {
+    res.render('search', {
       recipes,
       logged_in: req.session.logged_in,
     });
@@ -101,7 +106,7 @@ router.get('/', async (req, res) => {
 
 
 
-router.get('/profile',async (req,res)=>{
+router.get('/search',async (req,res)=>{
 try{
   const userData = await User.findByPk(req.session.user_id);
   const oneUser = userData.get({plain:true});
@@ -111,5 +116,18 @@ try{
   res.status(500).json(err);
 }
 });
+
+router.get('/recipe/:id',async (req,res)=>{
+  try{
+    const recipeData = await Recipe.findByPk(req.params.id);
+    const recipe = recipeData.get({plain:true});
+    console.log(recipe);
+  
+      res.render('recipeInfo',recipe);
+  
+  } catch(err){
+    res.status(500).json(err);
+  }
+  });
 
 module.exports = router;

@@ -1,4 +1,5 @@
 
+
 const newFormHandler = async (event) => {
   event.preventDefault();
   const Title = document.querySelector('#recipe-name').value.trim();
@@ -7,22 +8,7 @@ const newFormHandler = async (event) => {
   const Image_Name = document.querySelector('#recipe-image').value.trim();
   const Cleaned_Ingredients = document.querySelector('#recipe-cleaned-ingredients').value.trim();
 
-  // router.get('/recipes/:title', async (req, res) => {
-  //   try {
-  //     const [rows, fields] = await pool.query(
-  //       'SELECT * FROM recipes WHERE title = ?',
-  //       [req.params.title]
-  //     );
-  //     if (rows.length === 0) {
-  //       return res.status(404).send('Recipe not found');
-  //     }
-  //     const recipe = rows[0];
-  //     res.render('recipe', { Recipe });
-  //   } catch (err) {
-  //     console.error(err);
-  //     res.status(500).send('Server error');
-  //   }
-  // });
+  
   const getRecipeByTitle = async (title) => {
     try {
       const response = await fetch(`/recipes/${title}`);
@@ -84,6 +70,9 @@ searchForm.addEventListener('submit', async (event) => {
   if (response.ok) {
     const recipeData = await response.json();
     console.log(recipeData);
+    document.getElementById("recipe-title").textContent=recipeData.recipe.Title;
+    document.getElementById("food-image").src= "/images/Food-Images/"+recipeData.recipe.Image_Name+".jpg"
+    document.getElementById("recipe-link").href="/recipe/"+recipeData.recipe.id
     // handle data, such as updating HTML with the recipe details
   } else {
     alert('Failed to get recipe');
@@ -93,5 +82,27 @@ searchForm.addEventListener('submit', async (event) => {
 
 
 
+
 // document.querySelector('.recipe-list').addEventListener('click', delButtonHandler);
+
+
+
+
+router.get('/savedRecipes', async (req, res) => {
+  try {
+    // Find the current user
+    const user = await User.findOne({ where: { id: req.session.user_id } });
+
+    // Get all the user's saved recipes
+    const savedRecipes = await user.getRecipes();
+
+    // Render the savedRecipes view with the user's saved recipes
+    res.render('savedRecipes', { savedRecipes });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+module.exports = router;
 
