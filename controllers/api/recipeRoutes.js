@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Recipe } = require('../../models');
+const { Recipe, Ingredient } = require('../../models');
 const withAuth = require('../../utils/auth');
 const express = require('express');
 const path = require('path');
@@ -58,32 +58,37 @@ router.get('/', withAuth, (req, res) => {
   });
 });
 
+// router.get('/:Title', async (req, res) => {
+//   try {
+//     console.log(req.params.Title);
+//     const dbRecipeData = await Recipe.findOne({where: {Title: req.params.Title},
+//       include: [
+//         {
+//           model: Ingredient,
+//           attributes: [
+//             'id',
+//             'name'
+//           ],
+//         },
+//       ],
+//     });
+
 router.get('/:Title', async (req, res) => {
   try {
-    console.log(req.params.Title);
-    const dbRecipeData = await Recipe.findOne({where: {Title: req.params.Title},
-      include: [
-        {
-          model: Recipe,
-          attributes: [
-            'id',
-            'Title',
-            'Ingredients',
-            'Instructions',
-          ],
-        },
-      ],
+    const dbRecipeData = await Recipe.findOne({
+      where: { Title: req.params.Title },
+      attributes: { exclude: ['Image_Name', 'Cleaned_Ingredients'] },
     });
-// return dbRecipeData;
-console.log(dbRecipeData);
-
 
     const recipe = dbRecipeData.get({ plain: true });
-    res.render('profile', { recipe, logged_in: req.session.logged_in });
+    res.json({ recipe });
+    console.log(recipe);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
 });
+
+
 
 module.exports = router;
