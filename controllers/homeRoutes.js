@@ -4,7 +4,13 @@ const withAuth = require('../utils/auth');
 const {Recipe} = require('../models/index');
 const recipeData = require('../seeds/recipeData.json')
 
+<<<<<<< HEAD
 
+=======
+// router.get('/', (req, res) => {
+//     res.render('login');
+// });
+>>>>>>> main
 router.get('/', (req, res) => {
   res.render('landingPage', { title: 'main page',logged_in:req.session.logged_in }); // Render the main.handlebars file with a title variable
 });
