@@ -14,8 +14,8 @@ console.log(email,password);
     });
 
     if (response.ok) {
-      // If successful, redirect the browser to the profile page
-      document.location.replace('/profile');
+      // If successful, redirect the browser to the search page
+      document.location.replace('/search');
     } else {
       alert(response.statusText);
     }

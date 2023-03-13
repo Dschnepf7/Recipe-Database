@@ -33,7 +33,7 @@ const newFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/profile');
+      document.location.replace('/search');
     } else {
       alert('Failed to create recipe');
     }
@@ -103,6 +103,23 @@ router.get('/savedRecipes', async (req, res) => {
     res.status(500).json(err);
   }
 });
+const searchInput = document.querySelector('#search-input');
+
+searchInput.addEventListener('input', async () => {
+  const searchValue = searchInput.value.trim();
+
+  if (searchValue) {
+    const response = await fetch(`/api/autocomplete/${searchValue}`);
+
+    if (response.ok) {
+      const suggestions = await response.json();
+      // Display the suggestions
+    } else {
+      console.error(`Failed to get autocomplete suggestions for "${searchValue}"`);
+    }
+  }
+});
+
 
 module.exports = router;
 
