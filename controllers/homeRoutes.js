@@ -3,6 +3,7 @@ const {User} = require('../models/index');
 const withAuth = require('../utils/auth');
 const {Recipe} = require('../models/index');
 const recipeData = require('../seeds/recipeData.json')
+const $ = require('jquery')
 // router.get('/', (req, res) => {
 //     res.render('login');
 // });
@@ -30,7 +31,7 @@ router.get('/profile', withAuth, async (req, res) => {
     } catch (err) {
       res.status(500).json(err);
     }
-  });
+});
   
 router.get('/profile',withAuth,async (req,res)=>{
 try{
@@ -111,5 +112,18 @@ try{
   res.status(500).json(err);
 }
 });
+
+router.get('/recipe/:id',async (req,res)=>{
+  try{
+    const recipeData = await Recipe.findByPk(req.params.id);
+    const recipe = recipeData.get({plain:true});
+    console.log(recipe);
+  
+      res.render('recipeInfo',recipe);
+  
+  } catch(err){
+    res.status(500).json(err);
+  }
+  });
 
 module.exports = router;

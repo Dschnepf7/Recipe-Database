@@ -84,6 +84,9 @@ searchForm.addEventListener('submit', async (event) => {
   if (response.ok) {
     const recipeData = await response.json();
     console.log(recipeData);
+    document.getElementById("recipe-title").textContent=recipeData.recipe.Title;
+    document.getElementById("food-image").src= "/images/Food-Images/"+recipeData.recipe.Image_Name+".jpg"
+    document.getElementById("recipe-link").href="/recipe/"+recipeData.recipe.id
     // handle data, such as updating HTML with the recipe details
   } else {
     alert('Failed to get recipe');
