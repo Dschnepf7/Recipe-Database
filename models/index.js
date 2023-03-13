@@ -4,7 +4,7 @@ const SavedRecipe = require('./SavedRecipe');
 
 
 SavedRecipe.belongsTo(User, {
-    foreignKey: 'SavedRecipe_id',
+    foreignKey: 'user_id',
     onDelete: 'CASCADE'
 })
 
