@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Recipe, SavedRecipe } = require('../../models');
+const { Recipe, SavedRecipe, User } = require('../../models');
 const withAuth = require('../../utils/auth');
 const express = require('express');
 const path = require('path');
@@ -71,7 +71,9 @@ router.post("/save-recipe/:id", async (req, res) => {
     // Check if the recipe is already saved by the user
     const savedRecipe = await SavedRecipe.create({
         recipe_id: recipeId, 
-        user_id: userId
+        user_id: userId,
+        recipeId: recipeId, 
+        userId: userId
     });
 
     // if (savedRecipe) {
@@ -92,6 +94,29 @@ router.post("/save-recipe/:id", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+router.get("/saved-recipes/test", async (req, res) => {
+  try {
+    const savedRecipes = await SavedRecipe.findAll({
+      where: {
+        user_id: req.session.user_id, // filter by user ID
+      },
+      include: [
+        {
+          model: User,
+          include: [Recipe]
+        }
+      ]
+    });
+const allRecipes = savedRecipes.map(recipes =>recipes.get({ plain: true }));
+console.log(allRecipes[0].user.recipes);
+res.json(allRecipes[0].user.recipes);
+    // res.render("savedRecipes", { savedRecipes }); // render savedRecipes.handlebars template with saved recipes data
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
   }
 });
 
