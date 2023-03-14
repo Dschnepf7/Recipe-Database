@@ -25,7 +25,7 @@ Favrecipe.init(
           key:"id"
         }
       }
-  }, // <- add closing brace here
+  }, 
   {
     sequelize,
     freezeTableName: true,
