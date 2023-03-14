@@ -6,7 +6,7 @@
   
   <form id="search-form">
      <div class="input-field">
-    <input type="text" id="search-input" name="search" placeholder="Enter keywords">
+    <input type="text" id="search-input" name="search" placeholder="Enter Recipe Title">
     <ul class="autocomplete-dropdown"></ul>
     {{!-- <label for="search-input">Search:</label> --}}
   </div>
@@ -14,21 +14,29 @@
     <input type="text" id="search-input" name="search" placeholder="Enter keywords"> --}}
    
      <button id="search-button" class="waves-effect waves-light btn"><i class="material-icons right">search</i>Search</button>
+      <button class="waves-effect save-btn waves-light btn"><i class="material-icons right">visibility</i>
+        <a id = "recipe-link" href="#" style="color:white">View Recipe</a>
+        </button>
+    <button class="waves-effect save-btn waves-light btn"><i class="material-icons right">save</i>Save Recipe</button>
     {{!-- <button type="submit">Search</button> --}}
   </form>
 
  <ul>
     
       <li>
-        <h2 id="recipe-title"></h2>
+        <h3 id="recipe-title"></h3>
         <img id="food-image">
         <p></p>
-        <a id = "recipe-link" href="#">View Recipe</a>
+        {{!-- <button class="waves-effect save-btn waves-light btn" style="margin-left: 70%"><i class="material-icons right">visibility</i>
+        <a id = "recipe-link" href="#" style="color:white">View Recipe</a>
+        </button> --}}
       </li>
     
   </ul>
-  <button class="waves-effect save-btn waves-light btn"><i class="material-icons right">save</i>Save Recipe</button>
   
+  {{!-- <button class="waves-effect save-btn waves-light btn"><i class="material-icons right">save</i>Save Recipe</button> --}}
+  
+
   
   <script src="/js/search.js"></script>
   <script src="/js/saved.js"></script>
