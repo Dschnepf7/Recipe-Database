@@ -43,9 +43,12 @@ const allRecipe = await Recipe.findAll();
 const recipes = allRecipe.map(r=>r.get({plain:true}));
 console.log(recipes);
 const matchedRecipes = recipes.map(r=>{
-  return ['potato','salt'].includes("potato") ? "we have recipe": "no recipe"
+  return r.Cleaned_Ingredients.split(", ").includes(req.body.searchTerm) ? r: "no recipe"
 })
 console.log(matchedRecipes);
 });
+
+//fetch /recipe-search 
+// display data on page
 
 module.exports = router;

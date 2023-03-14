@@ -1,15 +1,27 @@
-header, .project:not(:last-child) {
+/* header, .project:not(:last-child) {
   border-bottom: 1px solid #ccc;
-}
+} */
 
-.page-footer {
+/* .page-footer {
   margin-top: 20px;
   margin-bottom: 10px;
+} */
+
+
+
+
+#location{
+  padding-left: 80%;
 }
 
 
-.dollar-amount {
-  color: #056605;
-  font-weight: bold;
-  margin-left: -5px;
+/* main {
+  flex: 1 0 auto;
+} */
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
 }
+
+
