@@ -123,4 +123,25 @@ router.get('/recipe/:id',async (req,res)=>{
   }
   });
 
+
+  router.get('/saved-recipes', withAuth, async (req, res) => {
+    try {
+      const savedRecipes = await SavedRecipe.findAll({
+        where: { user_id: req.session.user_id },
+        include: [
+          {
+            model: Recipe,
+            attributes: ['Title', 'Instructions', 'Image_Name'],
+          },
+        ],
+      });
+  
+      res.status(200).json(savedRecipes);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
+  });
+    
+
 module.exports = router;

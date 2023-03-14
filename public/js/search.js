@@ -81,17 +81,5 @@ searchForm.addEventListener('submit', async (event) => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 module.exports = router;
 

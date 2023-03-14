@@ -6,67 +6,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fridge Raider</title>
 
-  <link rel="stylesheet" href="/public/css/style.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" >
+  <style>
+      body {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 15px;
+        color:#383838;
+      }
+    </style>
+    <link rel="stylesheet" href="/public/css/style.css">
 </head>
 
+
 <body>
-
-  <body>
-    <div class="flex-column justify-space-around">
-      <header class="display-flex justify-space-between align-center p-2">
-        <nav>
-          <div class="nav-wrapper"> <a href="#" class="brand-logo">Fridge Raider 💸</a>                  <ul id="nav-mobile" class="right hide-on-med-and-down"> <li><a href="/">Home</a></li>
-              {{!-- link the path for the buttons!! --}} <li><a href="/saved">Saved</a></li>
-               <li><a href="/search">Search</a></li>
-              <li><a href="/login">Login</a></li>
-            </ul>
-          </div>
-          <!-- Conditionally render login or logout links -->
-          {{#if logged_in}}
-          <a href="/search">search</a> |
-          <button id="logout">logout</button>
-          {{else}}
-          <a href="/login">login</a>
-          {{/if}}
-        </nav>
-
-      </header>
-      <main class="container container-fluid mt-5">
-        <!-- Render the sub layout -->
-        {{{ body }}}
-      </main>
-      <footer class="page-footer">
-        <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <h5 class="white-text">Created By:</h5>
-              <p class="grey-text text-lighten-4">Ahmad Bustami, Irina Golovanich, Cynthia Guzman, and Dominic Schnepf.
-              </p>
+  <div class="page-container">
+    <div id="content-wrap">
+      <div class="flex-column justify-space-around">
+        <header class="display-flex justify-space-between align-center p-2">
+          <nav>
+            <div class="nav-wrapper"> <a href="#" class="brand-logo">Fridge Raider ♨</a>
+              <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/">Home</a></li>
+                {{!-- link the path for the buttons!! --}} <li><a href="/saved-recipes">Saved</a></li>
+                <li><a href="/search">Search</a></li>
+                <li><a href="/login">Login</a></li>
+              </ul>
             </div>
-            <div class="col l4 offset-l2 s12">
+            <!-- Conditionally render login or logout links -->
+            {{#if logged_in}}
+            <a href="/search">search</a>
+            <button id="logout" class="waves-effect waves-light btn"><i class="material-icons right"style="line-height:1.5">kitchen</i>logout</button>
+            {{else}}
+            <a href="/login">login</a>
+            {{/if}}
+          </nav>
+
+        </header>
+        <main class="container container-fluid mt-5">
+          <!-- Render the sub layout -->
+          {{{ body }}}
+        </main>
+        <footer class="page-footer" style="">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Created By:</h5>
+                <p class="grey-text text-lighten-4">Ahmad Bustami, Irina Golovanich, Cynthia Guzman, and Dominic
+                  Schnepf.
+                </p>
+              </div>
             </div>
-          </div>
-          <div class="footer-copyright">
-            <div class="container">
-              © 2023 Copyright Text
+            <div class="footer-copyright">
+              <div class="container">
+                © 2023 Copyright Text
+              </div>
             </div>
-          </div>
-      </footer>
+        </footer>
 
 
-      <!-- Render script for logged in users only -->
-      {{#if logged_in}}
+        <!-- Render script for logged in users only -->
+        {{#if logged_in}}
 
-      <script src="/js/logout.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="/js/logout.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 
-      {{/if}}
-  </body>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</body>
 
 </html>
-
-
