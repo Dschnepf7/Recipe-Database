@@ -1,5 +1,4 @@
 
-
 const newFormHandler = async (event) => {
   event.preventDefault();
   const Title = document.querySelector('#recipe-name').value.trim();
@@ -82,4 +81,3 @@ searchForm.addEventListener('submit', async (event) => {
 
 
 module.exports = router;
-
