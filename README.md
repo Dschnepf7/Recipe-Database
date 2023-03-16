@@ -28,6 +28,11 @@ You may use the login details below to test **FridgeRaider**:
 <br>
 <br>
 
+Please use these recipe Titles in order to use the website!
+-   Instant Pot Lamb Haleem
+-   Italian Sausage and Bread Stuffing
+-   Hot Pimento Cheese Dip
+
 
 **Home Page**
 <br>
